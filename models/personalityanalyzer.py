@@ -2,7 +2,6 @@ import nltk
 from textblob import TextBlob
 
 
-
 def analyze_personality(text):
     """
     Analyzes the personality traits based on input text.
@@ -25,14 +24,26 @@ def analyze_personality(text):
     }
 
 
-# Example input
-text_input = input("Write something about yourself: ")
+# Function to run the analysis repeatedly
+def run_analysis():
+    while True:
+        # Take input from the user
+        text_input = input("Write something about yourself (or type 'exit' to quit): ")
 
-# Analyze personality
-result = analyze_personality(text_input)
+        # Exit the loop if the user types 'exit'
+        if text_input.lower() == 'exit':
+            print("Exiting analysis.")
+            break
 
-# Display results
-print("\nAnalysis Results:")
-print(result["Sentiment Analysis"])
-for trait, description in result["Personality Traits"].items():
-    print(f"{trait}: {description}")
+        # Analyze personality
+        result = analyze_personality(text_input)
+
+        # Display results
+        print("\nAnalysis Results:")
+        print(result["Sentiment Analysis"])
+        for trait, description in result["Personality Traits"].items():
+            print(f"{trait}: {description}")
+        print("\n")
+
+# Run the analysis
+run_analysis()
